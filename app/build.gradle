@@ -42,6 +42,10 @@ android {
         test.java.srcDirs += "src/test-common/java"
     }
     buildToolsVersion '28.0.3'
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
