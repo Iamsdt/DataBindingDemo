@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">DataBinding</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings" translatable="false">Settings</string>
 </resources>
