@@ -6,26 +6,26 @@ import java.util.*
 
 object FakeRepository {
 
-    private val fruitNames: List<String> = listOf(
-        "Apple", "Banana", "Orange", "Kiwi", "Grapes", "Fig",
-        "Pear", "Strawberry", "Gooseberry", "Raspberry"
+    private val programmingLanName: List<String> = listOf(
+        "Kotlin", "C", "Python", "Java", "C#", "Dart",
+        "Perl", "Go", "Ruby", "Swift"
     )
 
-    private val _currentRandomFruitName = MutableLiveData<String>()
+    private val currentRandomName = MutableLiveData<String>()
 
-    val currentRandomFruitName: LiveData<String>
-        get() = _currentRandomFruitName
+    val currentRandomProName: LiveData<String>
+        get() = currentRandomName
 
     init {
-        _currentRandomFruitName.value = fruitNames.first()
+        currentRandomName.value = programmingLanName.first()
     }
 
-    fun getRandomFruitName(): String {
+    fun getRandomName(): String {
         val random = Random()
-        return fruitNames[random.nextInt(fruitNames.size)]
+        return programmingLanName[random.nextInt(programmingLanName.size)]
     }
 
-    fun changeCurrentRandomFruitName() {
-        _currentRandomFruitName.value = getRandomFruitName()
+    fun changeCurrentRandomName() {
+        currentRandomName.value = getRandomName()
     }
 }

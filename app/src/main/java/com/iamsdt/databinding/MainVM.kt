@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModel
 
 class MainVM : ViewModel(),Observable{
 
-    val currentRandomFruitName: LiveData<String>
-        get() = FakeRepository.currentRandomFruitName
+    val currentRandomProName: LiveData<String>
+        get() = FakeRepository.currentRandomProName
 
 
     //button
-    fun onChangeFuritClick() = FakeRepository.changeCurrentRandomFruitName()
+    fun onChangeClick() = FakeRepository.changeCurrentRandomName()
 
     @Bindable
     val editTextContent= MutableLiveData<String>()
@@ -28,7 +28,7 @@ class MainVM : ViewModel(),Observable{
     }
 
     fun onSelectRandomEditTextFruit() {
-        editTextContent.value = FakeRepository.getRandomFruitName()
+        editTextContent.value = FakeRepository.getRandomName()
     }
 
 
