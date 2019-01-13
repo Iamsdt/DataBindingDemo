@@ -11,6 +11,11 @@
             android:gravity="center"
             android:textSize="75sp"
             android:textColor="@android:color/black"
-            android:text="HOME" />
+            android:text="HOME"/>
+    <Button
+            android:text="Login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/login"/>
 
 </FrameLayout>

@@ -36,12 +36,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar(navController: NavController) {
-        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
+        NavigationUI.setupActionBarWithNavController(
+            this,
+            navController, drawer_layout
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val controller = Navigation.findNavController(this, R.id.nav_host_fragment)
+        controller.graph.clear()
+        finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
