@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_photos.*
+import java.util.*
 
 
 class PhotosFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_photos, container, false)
     }
@@ -20,14 +23,20 @@ class PhotosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_home.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.next_action)
+        val adapter = MyAdapter()
+        adapter.submitList(getList())
+
+        rcv.layoutManager = LinearLayoutManager(context)
+        rcv.adapter = adapter
+    }
+
+    private fun getList(): ArrayList<String> {
+        val arrayList = arrayListOf<String>()
+        for (i in 0 until 100) {
+            arrayList.add("Title: $i")
         }
 
-        arguments?.let {
-            val safeArgs = PhotosFragmentArgs.fromBundle(it)
-            textView_num.text = "Number of photos: ${safeArgs.numOfPhotos}"
-        }
+        return arrayList
     }
 
 }

@@ -29,6 +29,11 @@
                 app:destination="@id/destination_home"
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"/>
         <argument android:name="numOfPhotos" app:argType="integer" android:defaultValue="0"/>
+        <action android:id="@+id/action_details" app:destination="@id/detailsScreen"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument android:defaultValue="Title 0" android:name="listOfStr"/>
+        </action>
     </fragment>
 
     <fragment android:id="@+id/destination_settings"
@@ -50,5 +55,9 @@
               android:label="UpdateFragment"
               tools:layout="@layout/update_profile">
         <action android:id="@+id/action_home" app:destination="@id/destination_home"/>
+    </fragment>
+    <fragment android:id="@+id/detailsScreen" android:name="com.iamsdt.navigationcom.DetailsScreen"
+              android:label="DetailsScreen">
+        <argument android:name="listOfStr" app:argType="string" android:defaultValue="Title 0"/>
     </fragment>
 </navigation>

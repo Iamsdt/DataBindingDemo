@@ -1,1 +1,1 @@
-include ':databinding', ':navigationcom'
+include ':databinding', ':navigationcom', ':room'
