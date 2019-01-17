@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.iamsdt.room.db.dao.MyDao
 import java.util.concurrent.Executors
 
-@Database(entities = [MyData::class], version = 1)
+@Database(entities = [User::class], version = 1)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun dataDao(): MyDao
@@ -40,7 +40,8 @@ abstract class MyDatabase : RoomDatabase() {
                 })
                 .build()
 
-        val PREPOPULATE_DATA = listOf(MyData("1", 1), MyData("2", 2))
+        val PREPOPULATE_DATA = listOf(User(1, "book", 21),
+            User(2, "data",23))
     }
 }
 

@@ -6,26 +6,26 @@ import androidx.lifecycle.Observer
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import com.iamsdt.room.db.MyData
+import com.iamsdt.room.db.User
 
 @Dao
-interface MyDao : BaseDao<MyData> {
+interface MyDao : BaseDao<User> {
 
 
     @Transaction
-    fun updateData(users: List<MyData>) {
+    fun updateData(users: List<User>) {
         deleteAllUsers()
         insert(users)
     }
 
-    @Query("DELETE FROM MyData")
+    @Query("DELETE FROM User")
     fun deleteAllUsers()
 
-    @Query("SELECT * FROM MyData WHERE userid = :id")
-    fun getUserById(id: String): LiveData<MyData>
+    @Query("SELECT * FROM User WHERE userid = :id")
+    fun getUserById(id: String): LiveData<User>
 
     fun getDistinctUserById(id: String):
-            LiveData<MyData> = getUserById(id).getDistinct()
+            LiveData<User> = getUserById(id).getDistinct()
 }
 
 fun <T> LiveData<T>.getDistinct(): LiveData<T> {

@@ -4,9 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity
-class MyData(
-    val name: String,
+@Entity(tableName = "Owner")
+class User(
     @PrimaryKey
-    val userID: Int
+    val userId: Int,
+    val name: String,
+    val age: Int
 )
