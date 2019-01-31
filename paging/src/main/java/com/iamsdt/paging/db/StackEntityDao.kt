@@ -9,6 +9,9 @@ interface StackEntityDao {
     @Insert
     fun insert(data: StackEntity)
 
+    @Insert
+    fun insert(data: List<StackEntity>)
+
     @Update
     fun update(data: StackEntity)
 

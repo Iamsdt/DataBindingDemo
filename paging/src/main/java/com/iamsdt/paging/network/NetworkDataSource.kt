@@ -13,8 +13,7 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
 
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Item>) {
-        RetrofitClient().insance
-            .api
+        RetrofitClient.instance()
             .getAnswers(FIRST_PAGE, PAGE_SIZE, SITE_NAME)
             .enqueue(object : Callback<StackApiResponse> {
                 override fun onResponse(
@@ -38,8 +37,7 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Item>) {
-        RetrofitClient().insance
-            .api
+        RetrofitClient.instance()
             .getAnswers(params.key, PAGE_SIZE, SITE_NAME)
             .enqueue(object : Callback<StackApiResponse> {
                 override fun onResponse(
@@ -64,8 +62,7 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Item>) {
-        RetrofitClient().insance
-            .api
+        RetrofitClient.instance()
             .getAnswers(params.key, PAGE_SIZE, SITE_NAME)
             .enqueue(object : Callback<StackApiResponse> {
                 override fun onResponse(

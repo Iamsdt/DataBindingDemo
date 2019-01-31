@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [Photos::class, StackEntity::class], version = 1, exportSchema = false)
 abstract class MyDatabase : RoomDatabase() {
     abstract val photosDao: PhotosDao
-    abstract val stackEntity: StackEntity
+    abstract val stackEntityDao: StackEntityDao
 }
 
 object MyDB {
@@ -24,4 +24,5 @@ object MyDB {
         } else instance
 
     fun getDao(context: Context) = getDatabase(context).photosDao
+    fun getStackDao(context: Context) = getDatabase(context).stackEntityDao
 }

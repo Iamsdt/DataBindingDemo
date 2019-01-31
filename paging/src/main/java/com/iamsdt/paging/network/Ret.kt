@@ -1,5 +1,6 @@
 package com.iamsdt.paging.network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,29 +17,16 @@ interface Api {
     ): Call<StackApiResponse>
 }
 
-class RetrofitClient {
+object RetrofitClient {
 
     private val BASE_URL = "https://api.stackexchange.com/2.2/"
 
-    private var mInstance: RetrofitClient? = null
-
-    private val retrofit: Retrofit
-
-    val api: Api
-        get() = retrofit.create(Api::class.java)
-
-    init {
-        retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    val insance: RetrofitClient
-        @Synchronized get() {
-            if (mInstance == null) {
-                mInstance = RetrofitClient()
-            }
-            return mInstance!!
-        }
+    fun instance(): Api = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build().create(
+            Api::
+            class.java
+        )
 }
