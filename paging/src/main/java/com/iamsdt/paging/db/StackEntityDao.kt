@@ -18,7 +18,7 @@ interface StackEntityDao {
     @Delete
     fun delete(data: StackEntity)
 
-    @Query("Select * From Photos")
+    @Query("Select * From StackEntity")
     fun getAllData(): DataSource.Factory<Int, StackEntity>
 
 }

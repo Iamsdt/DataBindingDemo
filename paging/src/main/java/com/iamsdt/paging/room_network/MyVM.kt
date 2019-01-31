@@ -9,6 +9,8 @@ import com.iamsdt.paging.db.StackEntityDao
 import com.iamsdt.paging.network.Item
 import com.iamsdt.paging.network.RetrofitClient
 import com.iamsdt.paging.network.StackApiResponse
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,9 +70,11 @@ class MyVM : ViewModel() {
                             nextPage_key++
                         }
 
-                        val list = api?.items ?: emptyList()
-                        list.forEach {
-                            dao.insert(it.toStackEntity())
+                        GlobalScope.launch {
+                            val list = api?.items ?: emptyList()
+                            list.forEach {
+                                dao.insert(it.toStackEntity())
+                            }
                         }
                     }
 

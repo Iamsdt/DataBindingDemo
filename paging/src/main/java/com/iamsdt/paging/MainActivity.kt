@@ -7,7 +7,9 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.google.android.material.button.MaterialButton
+import com.iamsdt.paging.network.NetworkActivity
 import com.iamsdt.paging.room.RoomActivity
+import com.iamsdt.paging.room_network.RoomNetActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.reflect.KClass
 
@@ -18,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         room.click(RoomActivity::class)
+        network.click(NetworkActivity::class)
+        room_network.click(RoomNetActivity::class)
 
         insertData()
     }
