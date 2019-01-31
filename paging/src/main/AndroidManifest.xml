@@ -13,6 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".network.NetworkActivity">
+        </activity>
         <activity android:name=".room.RoomActivity">
         </activity>
         <activity android:name=".MainActivity">
