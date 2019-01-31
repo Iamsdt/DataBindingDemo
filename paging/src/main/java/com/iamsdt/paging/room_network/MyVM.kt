@@ -1,5 +1,6 @@
 package com.iamsdt.paging.room_network
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
@@ -44,6 +45,7 @@ class MyVM : ViewModel() {
         override fun onZeroItemsLoaded() {
             super.onZeroItemsLoaded()
             call(first_key, dao)
+            Log.e("MyTag", "called onZeroItemsLoaded")
         }
 
         override fun onItemAtEndLoaded(itemAtEnd: StackEntity) {
@@ -51,6 +53,7 @@ class MyVM : ViewModel() {
             //last item load
             //call for new data
             call(nextPage_key, dao)
+            Log.e("MyTag", "called onItemAtEndLoaded")
         }
     }
 
@@ -69,6 +72,8 @@ class MyVM : ViewModel() {
                         if (api?.has_more == true && nextPage_key < PAGE_SIZE) {
                             nextPage_key++
                         }
+                        Log.e("MyTag", "Response Successful")
+                        Log.e("MyTag", "NextPage:$nextPage_key")
 
                         GlobalScope.launch {
                             val list = api?.items ?: emptyList()

@@ -7,10 +7,10 @@ import androidx.room.*
 @Dao
 interface PhotosDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(data: Photos)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(data: List<Photos>)
 
     @Update
