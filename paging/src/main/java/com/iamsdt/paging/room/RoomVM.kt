@@ -9,12 +9,16 @@ import com.iamsdt.paging.db.PhotosDao
 
 class RoomVM : ViewModel() {
 
+    fun getData(dao: PhotosDao) = dao.data
+
     fun data(dao: PhotosDao): LiveData<PagedList<Photos>> {
         val factory = dao.getAllData()
 
         val config = PagedList.Config.Builder()
+            .setPageSize(30)
+            .setInitialLoadSizeHint(50)
+            .setPrefetchDistance(20)
             .setEnablePlaceholders(false)
-            .setPageSize(50)
             .build()
 
         return LivePagedListBuilder<Int, Photos>(factory, config)

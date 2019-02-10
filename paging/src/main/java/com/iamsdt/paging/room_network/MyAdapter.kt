@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.iamsdt.paging.R
 import com.iamsdt.paging.db.StackEntity
+import com.iamsdt.paging.room.MyAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item.view.*
 
-class MyAdapter : PagedListAdapter<StackEntity, MyAdapter.VH>(diff) {
+class MyAdapter2 : PagedListAdapter<StackEntity, MyAdapter2.VH>(diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = LayoutInflater.from(parent.context)

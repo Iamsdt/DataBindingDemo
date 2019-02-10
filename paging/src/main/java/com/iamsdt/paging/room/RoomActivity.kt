@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.activity_room.*
 
 class RoomActivity : AppCompatActivity() {
 
+    lateinit var viewModel: MyViewModel
+    lateinit var adapter: MyAdapter
+
     private val vm: RoomVM by lazy {
         ViewModelProviders.of(this).get(RoomVM::class.java)
     }
