@@ -7,10 +7,11 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.iamsdt.paging.R
+import com.iamsdt.paging.db.StackEntity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item.view.*
 
-class NetworkAdapter : PagedListAdapter<Item, NetworkAdapter.VH>(diff) {
+class NetworkAdapter : PagedListAdapter<StackEntity, NetworkAdapter.VH>(diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = LayoutInflater.from(parent.context)
@@ -20,7 +21,7 @@ class NetworkAdapter : PagedListAdapter<Item, NetworkAdapter.VH>(diff) {
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val model: Item? = getItem(position)
+        val model: StackEntity? = getItem(position)
         model?.let {
             //bind with view
             holder.bind(it)
@@ -29,12 +30,12 @@ class NetworkAdapter : PagedListAdapter<Item, NetworkAdapter.VH>(diff) {
 
 
     companion object {
-        val diff = object : DiffUtil.ItemCallback<Item>() {
-            override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-                return oldItem.answer_id == newItem.answer_id
+        val diff = object : DiffUtil.ItemCallback<StackEntity>() {
+            override fun areItemsTheSame(oldItem: StackEntity, newItem: StackEntity): Boolean {
+                return oldItem.name == newItem.name
             }
 
-            override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+            override fun areContentsTheSame(oldItem: StackEntity, newItem: StackEntity): Boolean {
                 return oldItem == newItem
             }
 
@@ -46,9 +47,9 @@ class NetworkAdapter : PagedListAdapter<Item, NetworkAdapter.VH>(diff) {
         private val tv = view.textViewName
         private val img = view.imageView
 
-        fun bind(model: Item) {
-            tv.text = model.owner?.display_name ?: "No name found"
-            Picasso.get().load(model.owner?.profile_image).into(img)
+        fun bind(model: StackEntity) {
+            tv.text = model.name
+            Picasso.get().load(model.img).into(img)
         }
 
     }

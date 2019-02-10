@@ -4,10 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.iamsdt.paging.db.StackEntity
 
 class NetworkViewModel : ViewModel() {
 
-    val data: LiveData<PagedList<Item>>
+    val data: LiveData<PagedList<StackEntity>>
         get() {
             val factory = NetworkDataSourceFactory()
 
@@ -16,7 +17,7 @@ class NetworkViewModel : ViewModel() {
                 .setPageSize(50)
                 .build()
 
-            return LivePagedListBuilder<Int, Item>(factory, config).build()
+            return LivePagedListBuilder<Int, StackEntity>(factory, config).build()
         }
 
 }

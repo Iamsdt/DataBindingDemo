@@ -1,18 +1,19 @@
 package com.iamsdt.paging.network
 
 import androidx.paging.PageKeyedDataSource
+import com.iamsdt.paging.db.StackEntity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
+class NetworkDataSource : PageKeyedDataSource<Int, StackEntity>() {
 
     val PAGE_SIZE = 50
     val FIRST_PAGE = 1
     val SITE_NAME = "Stackoverflow"
 
 
-    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Item>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, StackEntity>) {
         RetrofitClient.instance()
             .getAnswers(FIRST_PAGE, PAGE_SIZE, SITE_NAME)
             .enqueue(object : Callback<StackApiResponse> {
@@ -24,7 +25,18 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
                     if (response.body() != null) {
 
                         val list = response.body()?.items ?: emptyList()
-                        callback.onResult(list, null, FIRST_PAGE + 1)
+
+                        val array = ArrayList<StackEntity>()
+                        list.forEach {
+                            array.add(
+                                StackEntity(
+                                    name = it.owner?.display_name ?: "",
+                                    img = it.owner?.profile_image ?: ""
+                                )
+                            )
+                        }
+
+                        callback.onResult(array, null, FIRST_PAGE + 1)
 
                     }
 
@@ -36,7 +48,7 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
             })
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Item>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, StackEntity>) {
         RetrofitClient.instance()
             .getAnswers(params.key, PAGE_SIZE, SITE_NAME)
             .enqueue(object : Callback<StackApiResponse> {
@@ -50,7 +62,16 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
                         else null
 
                         val list = response.body()?.items ?: emptyList()
-                        callback.onResult(list, key)
+                        val array = ArrayList<StackEntity>()
+                        list.forEach {
+                            array.add(
+                                StackEntity(
+                                    name = it.owner?.display_name ?: "",
+                                    img = it.owner?.profile_image ?: ""
+                                )
+                            )
+                        }
+                        callback.onResult(array, key)
                     }
 
                 }
@@ -61,7 +82,7 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
             })
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Item>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, StackEntity>) {
         RetrofitClient.instance()
             .getAnswers(params.key, PAGE_SIZE, SITE_NAME)
             .enqueue(object : Callback<StackApiResponse> {
@@ -74,7 +95,16 @@ class NetworkDataSource : PageKeyedDataSource<Int, Item>() {
 
                     if (response.body() != null) {
                         val list = response.body()?.items ?: emptyList()
-                        callback.onResult(list, key)
+                        val array = ArrayList<StackEntity>()
+                        list.forEach {
+                            array.add(
+                                StackEntity(
+                                    name = it.owner?.display_name ?: "",
+                                    img = it.owner?.profile_image ?: ""
+                                )
+                            )
+                        }
+                        callback.onResult(array, key)
                     }
 
                 }

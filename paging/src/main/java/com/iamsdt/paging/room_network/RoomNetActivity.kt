@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.iamsdt.paging.R
 import com.iamsdt.paging.db.MyDB
+import com.iamsdt.paging.room.MyAdapter
 import com.iamsdt.paging.room.RoomAdapter
 import com.iamsdt.paging.room.RoomVM
 import kotlinx.android.synthetic.main.activity_room.*
@@ -23,7 +24,7 @@ class RoomNetActivity : AppCompatActivity() {
 
         //recycler view
         rcv.layoutManager = LinearLayoutManager(this)
-        val adapter = MyAdapter()
+        val adapter = MyAdapter2()
         rcv.adapter = adapter
 
         //getDatabase
